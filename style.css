@@ -96,7 +96,7 @@ li {
 }
 
 .subtask span {
-    color: var(--tg-theme-hint-color) !important;
+    color: var(--tg-theme-text-color) !important;
 }
 
 .subtask input[type="checkbox"] {
