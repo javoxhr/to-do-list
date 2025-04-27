@@ -92,7 +92,11 @@ li {
     align-items: center;
     gap: 8px;
     margin-bottom: 5px;
-    accent-color: #b866fa;
+    accent-color: var(--tg-theme-button-color);
+}
+
+.subtask span {
+    color: var(--tg-theme-hint-color) !important;
 }
 
 .subtask input[type="checkbox"] {
@@ -152,7 +156,6 @@ li {
     color: var(--tg-theme-button-color);
     background: var(--tg-theme-button-text-color);
     border: 1px solid var(--tg-theme-button-text-color);
-    border: none;
     cursor: pointer;
 }
 
