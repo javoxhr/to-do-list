@@ -22,6 +22,10 @@ h1 {
     max-width: 500px;
 }
 
+input {
+    color: var(--tg-theme-text-color) !important;
+}
+
 .input-group {
     display: flex;
     margin-bottom: 10px;
