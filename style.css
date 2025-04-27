@@ -30,7 +30,8 @@ h1 {
 .input-group input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
     border-radius: 8px 0 0 8px;
     outline: none;
 }
@@ -40,6 +41,7 @@ h1 {
     border: none;
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
+    border: 1px solid var(--tg-theme-button-text-color);
     cursor: pointer;
     border-radius: 0 8px 8px 0;
 }
@@ -149,6 +151,7 @@ li {
     padding: 5px;
     color: var(--tg-theme-button-color);
     background: var(--tg-theme-button-text-color);
+    border: 1px solid var(--tg-theme-button-text-color);
     border: none;
     cursor: pointer;
 }
@@ -157,6 +160,7 @@ li {
     width: 100%;
     padding: 5px;
     border-radius: 3px;
-    border: 1px solid #c9c9c9;
+    border: 1px solid var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color) !important;
     outline: none;
 }
