@@ -64,6 +64,19 @@ function addSubtask(taskIndex) {
     tasks[taskIndex].subtasks.push({ text: subtaskText, done: false });
     saveTasks();
     updateProgressAnimation(taskIndex);
+    
+    // Добавляем подзадачу сразу в DOM
+    const subtasksContainer = document.getElementById(`subtasks-${taskIndex}`);
+    const subtaskHTML = `
+        <div class="subtask">
+            <input type="checkbox" onchange="toggleSubtask(${taskIndex}, ${tasks[taskIndex].subtasks.length - 1})">
+            <span>${subtaskText}</span>
+            <button class="edit-btn" onclick="editSubtask(${taskIndex}, ${tasks[taskIndex].subtasks.length - 1})">Edit</button>
+            <button class="delete-btn" onclick="deleteSubtask(${taskIndex}, ${tasks[taskIndex].subtasks.length - 1})">Delete</button>
+        </div>
+    `;
+    subtasksContainer.innerHTML += subtaskHTML;
+
     subtaskInput.value = '';
 }
 
@@ -89,6 +102,7 @@ function editTask(index) {
     if (newTaskText !== null) {
         tasks[index].text = newTaskText.trim();
         saveTasks();
+        updateProgressAnimation(index);
     }
 }
 
@@ -98,6 +112,10 @@ function deleteSubtask(taskIndex, subIndex) {
         tasks[taskIndex].subtasks.splice(subIndex, 1);
         saveTasks();
         updateProgressAnimation(taskIndex);
+        
+        // Удаляем подзадачу сразу из DOM
+        const subtasksContainer = document.getElementById(`subtasks-${taskIndex}`);
+        subtasksContainer.removeChild(subtasksContainer.children[subIndex]);
     }
 }
 
@@ -107,6 +125,10 @@ function editSubtask(taskIndex, subIndex) {
     if (newSubtaskText !== null) {
         tasks[taskIndex].subtasks[subIndex].text = newSubtaskText.trim();
         saveTasks();
+        
+        // Обновляем текст подзадачи в DOM
+        const subtasksContainer = document.getElementById(`subtasks-${taskIndex}`);
+        subtasksContainer.children[subIndex].querySelector('span').textContent = newSubtaskText;
     }
 }
 
@@ -146,7 +168,7 @@ function renderTasks() {
                 <div class="progress-bar">
                     <div class="progress" style="width: ${progress}%"></div>
                 </div>
-                <div class="subtasks">
+                <div class="subtasks" id="subtasks-${taskIndex}">
                     <div class="sub-inp-and-btn">
                         <input type="text" id="subtaskInput-${taskIndex}" placeholder="Enter subtask..." maxlength="20">
                         <button onclick="addSubtask(${taskIndex})">Add Subtask</button>
